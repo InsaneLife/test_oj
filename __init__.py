@@ -1,4 +1,7 @@
 # coding=utf8
 # author=AaronChou
-p,q,n = 50, 75, 2
-print 100 if p+q>100 else p+q
+array_a = [1, 2, 5, 3, 4, 9, 6, 5, 4, 76, 88, 0, -1]
+i = 1
+b = []
+for i in range(5,8):
+    b[i] = 0

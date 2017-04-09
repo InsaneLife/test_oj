@@ -117,7 +117,40 @@ def HeapSort(array_a, n):
         AdjustDown(array_a, 1, i - 1)  # 把剩余的i-1整理成堆。
 
 
+def Merge(array_a, low, mid, high):
+    # 合并array_a的[low,...mid]和[mid+1,...high]的各自有序的两部分为一个新的有序表
+    b = []
+    for each in array_a[low:high + 1]:
+        b.append(each)
+    i, j = low, mid + 1
+    k = i
+    while i <= mid and j <= high:
+        if b[i - low] <= b[j - low]:
+            array_a[k] = b[i - low]
+            i += 1
+        else:
+            array_a[k] = b[j - low]
+            j += 1
+        k += 1
+    while i <= mid:
+        array_a[k] = b[i - low]
+        k += 1
+        i += 1
+    while j <= high:
+        array_a[k] = b[j - low]
+        k += 1
+        j += 1
+
+
+def MergeSort(array_a, low, high):
+    if low < high:
+        mid = (low + high) / 2
+        MergeSort(array_a, low, mid)
+        MergeSort(array_a, mid + 1, high)
+        Merge(array_a, low, mid, high)
+
+
 array_a = [1, 2, 5, 3, 4, 9, 6, 5, 4, 76, 88, 0, -1]
 
-HeapSort(array_a, len(array_a))
+MergeSort(array_a, 0, len(array_a) - 1)
 print array_a
